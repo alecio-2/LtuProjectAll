@@ -1,0 +1,31 @@
+<configuration>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+
+        <file>c:/temp/log/ltuprojectall_logback.log</file>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <logger name="example.LtuProjectAll" level="debug" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="example.LtuProjectAllv2" level="debug" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="com.codeborne.selenide" level="debug" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="com.codeborne.selenide" level="WARN" />
+
+
+    <root  level="off">
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>

@@ -106,7 +106,7 @@ public class LtuProjectAll {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
 
-            username = jsonNode.get("ltuCredentials").get("username").asText();
+            username = jsonNode.get("ltuCredentials").get("email").asText();
             password = jsonNode.get("ltuCredentials").get("password").asText();
 
             LOGGER.info("Json file is read");
@@ -207,7 +207,7 @@ public class LtuProjectAll {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
 
-            username = jsonNode.get("ltuCredentials").get("username").asText();
+            username = jsonNode.get("ltuCredentials").get("email").asText();
             password = jsonNode.get("ltuCredentials").get("password").asText();
 
         } catch (IOException e) {
@@ -423,7 +423,7 @@ public class LtuProjectAll {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
 
-            username = jsonNode.get("ltuCredentials").get("username").asText();
+            username = jsonNode.get("ltuCredentials").get("email").asText();
             password = jsonNode.get("ltuCredentials").get("password").asText();
 
             LOGGER.info("Json file is read");

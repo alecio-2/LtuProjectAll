@@ -250,6 +250,243 @@ public class LtuProjectAllv2 {
     }
 
     @Test
+    //Starting from the LTU.Se page, one test case to verify that you can get to the button to create your transcript and then create one.
+    public void case4() {
+
+
+        //Click on the Student link
+        try {
+            $(Selectors.byXpath("/html/body/header/div[2]/div[1]/div[1]/div[3]/div/a[1]")).shouldBe(Condition.visible)
+                    .click();
+            LOGGER.debug("The STUDENT link is clicked");
+
+        } catch (ElementNotFound e) {
+            LOGGER.error("The STUDENT link is not displayed");
+        }
+
+
+        //Click on the Student link
+        try {
+            //Press the Mitt LTU element a[onclick*='group']
+            $(byCssSelector("a[onclick*='group']")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The Mitt LTU link is clicked");
+
+        } catch (ElementNotFound e) {
+            LOGGER.error("The Mitt LTU link is not displayed");
+        }
+
+
+        //Get credentials from Json file and enter them in the login form
+        //Json file with username and password to login
+        File jsonFile = new File("C:\\temp\\ltu.json");
+
+        String username = null;
+        String password = null;
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonFile);
+
+            username = jsonNode.get("ltuCredentials").get("email").asText();
+            password = jsonNode.get("ltuCredentials").get("password").asText();
+
+            LOGGER.info("Json file is read");
+        } catch (IOException e) {
+            LOGGER.error("An error occurred while reading the Json file: " + e.getMessage());
+        }
+
+        //Enter the username
+        try {
+            $(byId("username")).sendKeys(username);
+            LOGGER.debug("The username is entered");
+        } catch (Exception e) {
+            LOGGER.error("The username  is not entered");
+        }
+
+        //Enter the password
+        try {
+            $(byId("password")).sendKeys(password);
+            LOGGER.debug("The password is entered");
+        } catch (Exception e) {
+            LOGGER.error("The password is not entered");
+        }
+
+        //Click on submit button
+        try {
+            $(Selectors.byName("submit")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The login button is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The login button is not found");
+        }
+
+
+        //Go to ladok
+        //Press the Intyg link element with id starting with something like "yui_patched_v3_11_0_1" and ending with
+        // something like "271"
+        try {
+            $(byCssSelector("a[id^='yui_patched_v3_11_0_1'][id$='271']")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The Intyg link is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The Intyg link is not found");
+        }
+
+
+        //Change focus from one windows to another
+        try {
+            Selenide.switchTo().window(1);
+            LOGGER.debug("The focus is changed to another window");
+        } catch (Exception e) {
+            LOGGER.error("The focus is not changed to another window");
+        }
+
+
+        //Here from ladok
+        //Press the button to accept cookies
+        try {
+            $(byCssSelector("button.btn.btn-light")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The cookies notification is closed");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The cookies notification button is not found");
+        }
+
+        //Press to choose the university
+        try {
+            $(byCssSelector("a[aria-label='Inloggning via ditt lärosäte / Login via your university']"))
+                    .shouldBe(Condition.visible).click();
+            LOGGER.debug("The button to login is pressed");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The button to login is not found");
+        }
+
+        //Press on the search field
+        try {
+            $(byId("searchinput")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The search field is pressed");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The search field is not found");
+        }
+
+        //Input LTU in the searchbar
+        try {
+            $(byId("searchinput")).sendKeys("LTU");
+            LOGGER.debug("LTU text is entered");
+        } catch (ElementNotFound e) {
+            LOGGER.error("LTU text is not entered");
+        }
+
+        //Choose LTU from the list
+        try {
+            $(byCssSelector("div.primary")).shouldBe(Condition.visible).click();
+            LOGGER.debug("Choosing LTU");
+        } catch (ElementNotFound e) {
+            LOGGER.error("LTU is not found");
+        }
+
+
+        //Get credentials from Json file and enter them in the login form
+        //Json file with username and password to login
+        jsonFile = new File("C:\\temp\\ltu.json");
+
+        username = null;
+        password = null;
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonFile);
+
+            username = jsonNode.get("ltuCredentials").get("email").asText();
+            password = jsonNode.get("ltuCredentials").get("password").asText();
+
+            LOGGER.info("Json file is read");
+        } catch (IOException e) {
+            LOGGER.error("An error occurred while reading the Json file: " + e.getMessage());
+        }
+
+        //Enter the username
+        try {
+            $(byId("username")).sendKeys(username);
+            LOGGER.debug("The username is entered");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The username element is not found");
+        } catch (Exception e) {
+            LOGGER.error("An error occurred while entering the username: " + e.getMessage());
+        }
+
+        //Enter the password
+        try {
+            $(byId("password")).sendKeys(password);
+            LOGGER.debug("The password is entered");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The password is not entered");
+        } catch (Exception e) {
+            LOGGER.error("An error occurred while entering the username: " + e.getMessage());
+        }
+
+        //Click on submit button
+        try {
+            $(Selectors.byName("submit")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The login button is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The login button is not found");
+        }
+
+
+        //Click on the Menu button
+        try {
+            $(byCssSelector("svg[data-icon='bars']")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The Menu button is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The Menu button is not found");
+        }
+
+
+        //Click on the Transcript/Intyg button
+        try {
+            $(byCssSelector("a[href*='intyg']")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The Transcript/Intyg button is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The Transcript/Intyg button is not found");
+        }
+
+
+        //Click on the Create button with class="btn-ladok-brand"
+        try {
+            $(byCssSelector(".btn.btn-ladok-brand")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The Create button is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The Create button is not found");
+        }
+
+
+        //Press to see the list of options for the transcript
+        try {
+            $(byId("intygstyp")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The list is shown");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The list is not found");
+        }
+
+
+        //Press on the second option with value="2: Object"
+        try {
+            $(byCssSelector("option[value='2: Object']")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The second option is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The option is not found");
+        }
+
+
+        //Press on the button to create the transcript
+        try {
+            $(byCssSelector(".btn-ladok-brand.text-nowrap.me-lg-3")).shouldBe(Condition.visible).click();
+            LOGGER.debug("The button to create the transcript is clicked");
+        } catch (ElementNotFound e) {
+            LOGGER.error("The button to create the transcript is not found");
+        }
+
+    }
+
+    @Test
     // Starting from the LTU.Se page, one test case to download the transcript that you created.
     // Download the transcript in target/downloads folder
     public void case2() {
